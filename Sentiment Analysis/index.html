@@ -9,17 +9,58 @@
             background-color: #1e1e1e;
             color: #ffffff;
             font-family: Arial, Helvetica, sans-serif;
-            margin:20px;
+            margin:0;
+            display: flex;
+            flex-direction: column;
         }
+        .header{
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #2e2e2e;
+            padding: 5px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .content{
+            padding: 20px;
+            margin-top: 0;
+        }
+        .converter-widget{
+            margin: 0;
+        }
+        #price-search-form {
+            display: flex;
+            flex-direction: row; 
+            width: 600px; 
+            gap: 10px;
+            margin: 0 auto;
+        }
+        button, input[type="date"], 
+        select {
+            width: 100%; 
+            padding: 5px;
+            margin-bottom: 10px; 
+            border: 1px solid #ccc;
+            border-radius: 8px; 
+            font-size: 18px; 
+        }
+        input[type="date"]:focus, 
+        select:focus {
+            border-color: #007bff; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+        
         h1{
             text-align: center;
-            margin-bottom: 60px;
-            color: #39FF14;
+            margin-bottom: 10px;
+            color: #87CEFA;
             font-size: 40px;      
         }
         h2{
             text-align: center;
-            color: #e010e0;
+            color: #39FF14;
         }
         .chart-container {
             margin: 20px auto;
@@ -28,112 +69,144 @@
         }
         iframe {
             width: 100%;
-            height: 600px;
             border: none;
         }
         
     </style>
 </head>
 <body>
-    <h1>Cryptocurrency Analysis: Insights from Reddit</h1>
+    <div class="header">
+        <h1>Cryptocurrency Analysis: Insights from Reddit over 180 Days</h1>
 
-    <div class="chart-container">
-        <h2> Cryptocurrency Price Trend </h2>
-        <iframe src="HTML/crypto_price_trend.html"></iframe>
-        <p style="text-align: center; font-size: 0.9rem;">
-            Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
+        <div class="converter-widget">
+            <iframe
+                title="fx"
+                src="https://wise.com/gb/currency-converter/fx-widget/converter?sourceCurrency=MYR&targetCurrency=USD"
+                height="189"
+                frameBorder="0"
+                allowtransparency="true"
+            ></iframe>
+        </div>
+
+        <div>
+            <form id="price-search-form">
+                <input type="date" id="date" required>
+                <select id="coin" required>
+                    <option value="">Select Coin</option>
+                    <option value="bitcoin">Bitcoin</option>
+                    <option value="ethereum">Ethereum</option>
+                    <option value="tether">Tether</option>
+                    <option value="binancecoin">Binancecoin</option>
+                </select>
+                <button type="submit">Search Price</button>
+                <div id="result" style="color: yellow;"></div>
+            </form>
+        </div>
     </div>
 
-    <div class="chart-container">
-        <h2> Cryptocurrency Price Trend - Subplots </h2>
-        <iframe src="HTML/crypto_price_trend_subplots.html" style="height: 820px"></iframe>
-        <p style="text-align: center; font-size: 0.9rem;">
-            Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
-    </div>
+    <div class="content">
+        <!-- <h1>Cryptocurrency Analysis: Insights from Reddit over 180 Days</h1> -->
 
-    <div class="chart-container">
-        <h2> General Sentiment Score </h2>
-        <iframe src="html/sentiment_score_general.html" style="height: 650px"></iframe>
-    </div>
+        <div class="chart-container" >
+            <h2> Cryptocurrency Price Trend </h2>
+            <iframe src="HTML/crypto_price_trend.html" style="height: 600px"></iframe>
+            <p style="text-align: center; font-size: 0.9rem;">
+                Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
+        </div>
 
-    <div class="chart-container">
-        <h2> Sentiment Score: Bitcoin, Ethereum, Tether, Binancecoin </h2>
-        <iframe src="html/coin_sentiment_score.html" style="height: 650px"></iframe>
-    </div>
+        <div class="chart-container">
+            <h2> Cryptocurrency Price Trend - Subplots </h2>
+            <iframe src="HTML/crypto_price_trend_subplots.html" style="height: 820px"></iframe>
+            <p style="text-align: center; font-size: 0.9rem;">
+                Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
+        </div>
 
-    <div class="chart-container">
-        <h2> Volatility Analysis </h2>
-        <iframe src="html/volatility_analysis.html" style="height: 940px"></iframe>
-        <p><strong>Volatility Analysis:</strong></p>
-        <p>- Tether is very stable with less volatility due to being pegged to the US dollar.<br>
-        - On 9/6, when the price of other coins crashed, USDT price increased as traders might flock to stablecoins, which leads to an increase in demand for it.<br>
-        - The price for BTC, ETH, and BNB dropped the most on 4/8 (look for reasons behind the crash).<br>
-        - Generally, ETH experienced the worst drop and the best jump when prices fluctuated, followed by BNB (excluding stablecoins and BTC).</p>
-    </div>
+        <div class="chart-container">
+            <h2> General Sentiment Score </h2>
+            <iframe src="html/sentiment_score_general.html" style="height: 650px"></iframe>
+        </div>
 
-    <div class="chart-container">
-        <h2> Daily Cumulative Returns </h2>
-        <iframe src="html/daily_returns_analysis.html"></iframe>
-        <p><strong>Return Indicators:</strong><br>
-        - 0%: no change in value<br>
-        - 20%: investment has increased by 20%<br>
-        - -50%: a loss of 50% of investment</p>
-    
-        <p><strong>Analysis:</strong></p>
+        <div class="chart-container">
+            <h2> Sentiment Score: Bitcoin, Ethereum, Tether, Binancecoin </h2>
+            <iframe src="html/coin_sentiment_score.html" style="height: 650px"></iframe>
+        </div>
+
+        <div class="chart-container">
+            <h2> Volatility Analysis </h2>
+            <iframe src="html/volatility_analysis.html" style="height: 940px"></iframe>
+            <p><strong>Volatility Analysis:</strong></p>
+            <p>- Tether is very stable with less volatility due to being pegged to the US dollar.<br>
+            - On 9/6, when the price of other coins crashed, USDT price increased as traders might flock to stablecoins, which leads to an increase in demand for it.<br>
+            - The price for BTC, ETH, and BNB dropped the most on 4/8 (look for reasons behind the crash).<br>
+            - Generally, ETH experienced the worst drop and the best jump when prices fluctuated, followed by BNB (excluding stablecoins and BTC).</p>
+        </div>
+
+        <div class="chart-container">
+            <h2> Daily Cumulative Returns </h2>
+            <iframe src="html/daily_returns_analysis.html" style="height: 600px"></iframe>
+            <p><strong>Return Indicators:</strong><br>
+            - 0%: no change in value<br>
+            - 20%: investment has increased by 20%<br>
+            - -50%: a loss of 50% of investment</p>
         
-        <p>1) <strong>Ethereum:</strong><br>
-        - Return for ETH peaked slightly at the end of April, then crashed below 0% until 20/5.<br>
-        - It peaked significantly on 23/5 then started to gradually decline in early June until the end of June before crashing to -28% around the first week of August.<br>
-        - It was gradually increasing within August, still below -15% before declining even more in early September to -34%.<br>
-        - The price was volatile until mid-October (below -20%).</p>
-    
-        <p>2) <strong>Binance Coin:</strong><br>
-        - It mirrors Ethereum's volatility but performed slightly better from the end of April until 20/5, ranging from 0 to 10%.<br>
-        - Return for BNB was the highest on 7/6 (25%), then dropped significantly a week after; the decline mirrors ETH, but BNB performed a little worse.<br>
-        - It performed better than ETH in early August until mid-October; the price was volatile, and the loss was slightly less than 0%.</p>
-    
-        <p>3) <strong>Bitcoin:</strong><br>
-        - The return dropped to -10% in early May.<br>
-        - It gradually increased to 10% on 21/5.<br>
-        - The returns were volatile for a month (still above 0), but gradually crashed below 0 until 9/7.<br>
-        - It gradually increased until the returns maintained around 5% for two weeks before declining to -20%.<br>
-        - From August to October, the returns were volatile, and loss percentages were below -10%.<br>
-        - It performed better than Ethereum, but Binance Coin outperformed it during this period.</p>
-    
-        <p>4) <strong>USDT:</strong><br>
-        - The cumulative return for Tether is gradually decreasing but not as steep as the other three coins.<br>
-        - From May to August, the returns maintained slightly below 0; starting in August, it declined in the range of -5% until -10% in mid-September.<br>
-        - However, it slowly jumped back to -9% in mid-October.</p>
-    </div>
+            <p><strong>Analysis:</strong></p>
+            
+            <p>1) <strong>Ethereum:</strong><br>
+            - Return for ETH peaked slightly at the end of April, then crashed below 0% until 20/5.<br>
+            - It peaked significantly on 23/5 then started to gradually decline in early June until the end of June before crashing to -28% around the first week of August.<br>
+            - It was gradually increasing within August, still below -15% before declining even more in early September to -34%.<br>
+            - The price was volatile until mid-October (below -20%).</p>
+        
+            <p>2) <strong>Binance Coin:</strong><br>
+            - It mirrors Ethereum's volatility but performed slightly better from the end of April until 20/5, ranging from 0 to 10%.<br>
+            - Return for BNB was the highest on 7/6 (25%), then dropped significantly a week after; the decline mirrors ETH, but BNB performed a little worse.<br>
+            - It performed better than ETH in early August until mid-October; the price was volatile, and the loss was slightly less than 0%.</p>
+        
+            <p>3) <strong>Bitcoin:</strong><br>
+            - The return dropped to -10% in early May.<br>
+            - It gradually increased to 10% on 21/5.<br>
+            - The returns were volatile for a month (still above 0), but gradually crashed below 0 until 9/7.<br>
+            - It gradually increased until the returns maintained around 5% for two weeks before declining to -20%.<br>
+            - From August to October, the returns were volatile, and loss percentages were below -10%.<br>
+            - It performed better than Ethereum, but Binance Coin outperformed it during this period.</p>
+        
+            <p>4) <strong>USDT:</strong><br>
+            - The cumulative return for Tether is gradually decreasing but not as steep as the other three coins.<br>
+            - From May to August, the returns maintained slightly below 0; starting in August, it declined in the range of -5% until -10% in mid-September.<br>
+            - However, it slowly jumped back to -9% in mid-October.</p>
+        </div>
 
-    <div class="chart-container">
-        <h2> Correlation Matrix </h2>
-        <iframe src="html/correlations_analysis.html"></iframe>
-        <p><strong>Indicator:</strong><br>
-        - High positive correlation: close to 1 = they move together<br>
-        - Moderate correlation: 0.5 to 0.8<br>
-        - Low or No correlation: close to 0 = no relationship</p>
-    
-        <p><strong>Analysis:</strong></p>
-        <p>1) Bitcoin = Binancecoin (0.929) and Ethereum (0.916) have strong positive correlation. BTC moves up; those two would follow.<br>
-        - Tether (0.763) has moderate correlation to Bitcoin.<br>
-        - USDT is a stablecoin; it might not experience the same volatility as BTC.</p>
-    
-        <p>2) Ethereum = Bitcoin (0.916) has strong positive correlation.<br>
-        - Against Binancecoin (0.863) and Tether (0.874), it has moderate correlation.<br>
-        - ETH often moves in tandem with BTC.</p>
-    
-        <p>3) Tether = Ethereum (0.874), it has close to positive correlation.<br>
-        - Against Bitcoin (0.763) and Binancecoin (0.729), they have moderate correlation.<br>
-        - USDT (Tether) can be affected by ETH's price movement, but because it's pegged to US dollars, the price doesn’t fluctuate much.</p>
-    
-        <p>4) Binancecoin = Bitcoin (0.929), it has strong positive correlation.<br>
-        - Ethereum (0.863), it's close to positive correlation.<br>
-        - Tether (0.729), it has moderate correlation.</p>
-    </div>
+        <div class="chart-container">
+            <h2> Correlation Matrix </h2>
+            <iframe src="html/correlations_analysis.html" style="height: 600px"></iframe>
+            <p><strong>Indicator:</strong><br>
+            - High positive correlation: close to 1 = they move together<br>
+            - Moderate correlation: 0.5 to 0.8<br>
+            - Low or No correlation: close to 0 = no relationship</p>
+        
+            <p><strong>Analysis:</strong></p>
+            <p>1) Bitcoin = Binancecoin (0.929) and Ethereum (0.916) have strong positive correlation. BTC moves up; those two would follow.<br>
+            - Tether (0.763) has moderate correlation to Bitcoin.<br>
+            - USDT is a stablecoin; it might not experience the same volatility as BTC.</p>
+        
+            <p>2) Ethereum = Bitcoin (0.916) has strong positive correlation.<br>
+            - Against Binancecoin (0.863) and Tether (0.874), it has moderate correlation.<br>
+            - ETH often moves in tandem with BTC.</p>
+        
+            <p>3) Tether = Ethereum (0.874), it has close to positive correlation.<br>
+            - Against Bitcoin (0.763) and Binancecoin (0.729), they have moderate correlation.<br>
+            - USDT (Tether) can be affected by ETH's price movement, but because it's pegged to US dollars, the price doesn’t fluctuate much.</p>
+        
+            <p>4) Binancecoin = Bitcoin (0.929), it has strong positive correlation.<br>
+            - Ethereum (0.863), it's close to positive correlation.<br>
+            - Tether (0.729), it has moderate correlation.</p>
+        </div>
 
-    <footer style="font-size:15px; color: yellow; text-align: center">
-        &copy; 2024 Asyikin 😊. All Rights Reserved.
-    </footer>
+        <footer style="font-size:15px; color: yellow; text-align: center">
+            &copy; 2024 Asyikin 😊. All Rights Reserved.
+        </footer>
+
+    </div>
 </body>
+    <script src="index.js"></script>
 </html>
