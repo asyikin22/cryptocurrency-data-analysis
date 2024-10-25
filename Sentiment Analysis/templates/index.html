@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cryptocurrency Analysis: Insights from Reddit</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 
 </head>
 <body>
@@ -47,31 +47,31 @@
 
         <div class="chart-container" >
             <h2> Cryptocurrency Price Trend </h2>
-            <iframe src="HTML/crypto_price_trend.html" style="height: 600px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/crypto_price_trend.html') }}" style="height: 600px"></iframe>
             <p style="text-align: center; font-size: 0.9rem;">
                 Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
         </div>
 
         <div class="chart-container">
             <h2> Cryptocurrency Price Trend - Subplots </h2>
-            <iframe src="HTML/crypto_price_trend_subplots.html" style="height: 820px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/crypto_price_trend_subplots.html') }}" style="height: 820px"></iframe>
             <p style="text-align: center; font-size: 0.9rem;">
                 Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
         </div>
 
         <div class="chart-container">
             <h2> General Sentiment Score </h2>
-            <iframe src="html/sentiment_score_general.html" style="height: 650px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/sentiment_score_general.html') }}" style="height: 650px"></iframe>
         </div>
 
         <div class="chart-container">
             <h2> Sentiment Score: Bitcoin, Ethereum, Tether, Binancecoin </h2>
-            <iframe src="html/coin_sentiment_score.html" style="height: 650px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/coin_sentiment_score.html') }}" style="height: 650px"></iframe>
         </div>
 
         <div class="chart-container">
             <h2> Volatility Analysis </h2>
-            <iframe src="html/volatility_analysis.html" style="height: 940px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/volatility_analysis.html') }}" style="height: 940px"></iframe>
             <p><strong>Volatility Analysis:</strong></p>
             <p>- Tether is very stable with less volatility due to being pegged to the US dollar.<br>
             - On 9/6, when the price of other coins crashed, USDT price increased as traders might flock to stablecoins, which leads to an increase in demand for it.<br>
@@ -81,7 +81,7 @@
 
         <div class="chart-container">
             <h2> Daily Cumulative Returns </h2>
-            <iframe src="html/daily_returns_analysis.html" style="height: 600px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/daily_returns_analysis.html') }}" style="height: 600px"></iframe>
             <p><strong>Return Indicators:</strong><br>
             - 0%: no change in value<br>
             - 20%: investment has increased by 20%<br>
@@ -116,7 +116,7 @@
 
         <div class="chart-container">
             <h2> Correlation Matrix </h2>
-            <iframe src="html/correlations_analysis.html" style="height: 600px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/correlations_analysis.html') }}" style="height: 600px"></iframe>
             <p><strong>Indicator:</strong><br>
             - High positive correlation: close to 1 = they move together<br>
             - Moderate correlation: 0.5 to 0.8<br>
@@ -146,5 +146,6 @@
 
     </div>
 </body>
-    <script src="index.js"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </html>
