@@ -1,5 +1,11 @@
 // console.log('hello bitches')
 
+//toggle function for currency converter widget
+function toggleWidget() {
+    const widget = document.querySelector('.converter-widget');
+    widget.classList.toggle('active');
+}
+
 document.getElementById('price-search-form').addEventListener('submit', function(event){
     event.preventDefault();
 

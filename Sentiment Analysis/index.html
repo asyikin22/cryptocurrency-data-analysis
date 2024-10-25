@@ -4,104 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cryptocurrency Analysis: Insights from Reddit</title>
-    <style>
-        body {
-            background-color: #1e1e1e;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            margin:0;
-            display: flex;
-            flex-direction: column;
-        }
-        .header{
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: #2e2e2e;
-            padding: 5px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-        }
-        .content{
-            padding: 20px;
-            margin-top: 0;
-        }
-        .converter-widget{
-            margin: 0;
-        }
-        #price-search-form {
-            display: flex;
-            flex-direction: row; 
-            width: 600px; 
-            gap: 10px;
-            margin: 0 auto;
-        }
-        button, input[type="date"], 
-        select {
-            width: 100%; 
-            padding: 5px;
-            margin-bottom: 10px; 
-            border: 1px solid #ccc;
-            border-radius: 8px; 
-            font-size: 18px; 
-        }
-        input[type="date"]:focus, 
-        select:focus {
-            border-color: #007bff; /* Change border color on focus */
-            outline: none; /* Remove default outline */
-        }
-        
-        h1{
-            text-align: center;
-            margin-bottom: 10px;
-            color: #87CEFA;
-            font-size: 40px;      
-        }
-        h2{
-            text-align: center;
-            color: #39FF14;
-        }
-        .chart-container {
-            margin: 20px auto;
-            margin-bottom: 40px;
-            width: 90%;
-        }
-        iframe {
-            width: 100%;
-            border: none;
-        }
-        
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
 </head>
 <body>
     <div class="header">
-        <h1>Cryptocurrency Analysis: Insights from Reddit over 180 Days</h1>
+        <h1>Cryptocurrency Analysis: Insights from Reddit</h1>
 
-        <div class="converter-widget">
-            <iframe
-                title="fx"
-                src="https://wise.com/gb/currency-converter/fx-widget/converter?sourceCurrency=MYR&targetCurrency=USD"
-                height="189"
-                frameBorder="0"
-                allowtransparency="true"
-            ></iframe>
+        <div class="button-container">
+            <button class="toggle-btn" onclick="toggleWidget()">Currency Converter</button>
         </div>
 
-        <div>
-            <form id="price-search-form">
-                <input type="date" id="date" required>
-                <select id="coin" required>
-                    <option value="">Select Coin</option>
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="ethereum">Ethereum</option>
-                    <option value="tether">Tether</option>
-                    <option value="binancecoin">Binancecoin</option>
-                </select>
-                <button type="submit">Search Price</button>
-                <div id="result" style="color: yellow;"></div>
-            </form>
-        </div>
+        <form id="price-search-form">
+            <input type="date" id="date" required>
+            <select id="coin" required>
+                <option value="">Select Coin</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="tether">Tether</option>
+                <option value="binancecoin">Binancecoin</option>
+            </select>
+            <button type="submit" style="width:140px">Search</button>
+
+            <div id="result"></div>
+        </form>
+    
+    </div>
+
+    <div class="converter-widget">
+        <iframe
+            title="fx"
+            src="https://wise.com/gb/currency-converter/fx-widget/converter?sourceCurrency=MYR&targetCurrency=USD"
+            width="100%"
+            height="350"
+            frameBorder="0"
+            allowtransparency="true"
+        ></iframe>
     </div>
 
     <div class="content">
