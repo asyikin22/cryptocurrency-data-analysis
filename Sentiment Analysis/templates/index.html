@@ -45,32 +45,47 @@
     <div class="content">
         <!-- <h1>Cryptocurrency Analysis: Insights from Reddit over 180 Days</h1> -->
 
-        <div class="chart-container" >
-            <h2> Cryptocurrency Price Trend </h2>
+        <div class="chart-container" id="chart1" >
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;"> Cryptocurrency Price Trend </h2>
+                <button class="float-btn" onclick="toggleFloat('chart1')" style="width:55px">Float</button>
+            </div>
             <iframe src="{{ url_for('static', filename='HTML/crypto_price_trend.html') }}" style="height: 600px"></iframe>
             <p style="text-align: center; font-size: 0.9rem;">
                 Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
         </div>
 
-        <div class="chart-container">
-            <h2> Cryptocurrency Price Trend - Subplots </h2>
+        <div class="chart-container" id="chart2">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;"> Cryptocurrency Price Trend - Subplots </h2>
+                <button class="float-btn" onclick="toggleFloat('chart2')" style="width:55px">Float</button>
+            </div>
             <iframe src="{{ url_for('static', filename='HTML/crypto_price_trend_subplots.html') }}" style="height: 820px"></iframe>
             <p style="text-align: center; font-size: 0.9rem;">
                 Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
         </div>
 
-        <div class="chart-container">
-            <h2> General Sentiment Score </h2>
+        <div class="chart-container" id="chart3">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;"> General Sentiment Score </h2>
+                <button class="float-btn" onclick="toggleFloat('chart3')" style="width:55px">Float</button>
+            </div>
             <iframe src="{{ url_for('static', filename='HTML/sentiment_score_general.html') }}" style="height: 650px"></iframe>
         </div>
 
-        <div class="chart-container">
-            <h2> Sentiment Score: Bitcoin, Ethereum, Tether, Binancecoin </h2>
+        <div class="chart-container" id="chart4">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;"> Sentiment Score: Bitcoin, Ethereum, Tether, Binancecoin </h2>
+                <button class="float-btn" onclick="toggleFloat('chart4')" style="width:55px">Float</button>
+            </div>
             <iframe src="{{ url_for('static', filename='HTML/coin_sentiment_score.html') }}" style="height: 650px"></iframe>
-        </div>
+        </div>  
 
-        <div class="chart-container">
-            <h2> Volatility Analysis </h2>
+        <div class="chart-container" id="chart5">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;"> Volatility Analysis </h2>
+                <button class="float-btn" onclick="toggleFloat('chart5')" style="width:55px">Float</button>
+            </div>
             <iframe src="{{ url_for('static', filename='HTML/volatility_analysis.html') }}" style="height: 940px"></iframe>
             <p><strong>Volatility Analysis:</strong></p>
             <p>- Tether is very stable with less volatility due to being pegged to the US dollar.<br>
@@ -79,8 +94,11 @@
             - Generally, ETH experienced the worst drop and the best jump when prices fluctuated, followed by BNB (excluding stablecoins and BTC).</p>
         </div>
 
-        <div class="chart-container">
-            <h2> Daily Cumulative Returns </h2>
+        <div class="chart-container" id="chart6">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;">Daily Cumulative Returns</h2>
+                <button class="float-btn" onclick="toggleFloat('chart6')" style="width:55px">Float</button>
+            </div>
             <iframe src="{{ url_for('static', filename='HTML/daily_returns_analysis.html') }}" style="height: 600px"></iframe>
             <p><strong>Return Indicators:</strong><br>
             - 0%: no change in value<br>
@@ -114,8 +132,11 @@
             - However, it slowly jumped back to -9% in mid-October.</p>
         </div>
 
-        <div class="chart-container">
-            <h2> Correlation Matrix </h2>
+        <div class="chart-container" id="chart7">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;">Correlation Matrix</h2>
+                <button class="float-btn" onclick="toggleFloat('chart7')" style="width:55px">Float</button>
+            </div>
             <iframe src="{{ url_for('static', filename='HTML/correlations_analysis.html') }}" style="height: 600px"></iframe>
             <p><strong>Indicator:</strong><br>
             - High positive correlation: close to 1 = they move together<br>
@@ -140,12 +161,24 @@
             - Tether (0.729), it has moderate correlation.</p>
         </div>
 
+        <div class="chatbot-btn" onclick="toggleChatbot()">💬</div>
+
+        <div id="chatbot" class="chatbot">
+            <div class="chatbot-header">Chatbot</div>
+            <div class="chatbot-messages" id="chatbot-messages"></div>
+            <div class="chatbot-input">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
         <footer style="font-size:15px; color: yellow; text-align: center">
             &copy; 2024 Asyikin 😊. All Rights Reserved.
         </footer>
-
     </div>
 </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </html>

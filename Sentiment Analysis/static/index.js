@@ -6,6 +6,49 @@ function toggleWidget() {
     widget.classList.toggle('active');
 }
 
+//toggle funciton for floating chart
+function toggleFloat(chartId) {
+    const selectedChart = document.getElementById(chartId);
+
+    if (selectedChart) {
+        selectedChart.classList.toggle("floating");
+        makeDraggable(selectedChart);
+    } else {
+        console.error(`Element with ID ${chartId} not found`)
+    }
+}
+
+//funcition to make charts draggable
+function makeDraggable(chart) {
+    let offsetX, offsetY;
+
+    chart.onmousedown = function (e) {
+        e.preventDefault();
+        chart.classList.add('dragging');
+
+        offsetX = e.clientX - chart.getBoundingClientRect().left;
+        offsetY = e.clientY - chart.getBoundingClientRect().top;
+
+        document.onmousemove = function (e) {
+            const newX = e.clientX - offsetX
+            const newY = e.clientY - offsetY
+
+            const maxX = window.innerWidth - chart.offsetWidth;
+            const maxY = window.innerHeight - chart.offsetHeight;
+
+            chart.style.left = Math.max(0, Math.min(newX, maxX)) + 'px';
+            chart.style.top = Math.max(0, Math.min(newY, maxY)) + 'px';
+        }
+
+        document.onmouseup = function () {
+            chart.classList.remove('dragging')
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+    };
+};
+
+//function to get price history from coin gecko
 document.getElementById('price-search-form').addEventListener('submit', function(event){
     event.preventDefault();
 
