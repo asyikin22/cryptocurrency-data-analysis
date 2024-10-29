@@ -137,36 +137,28 @@ iframe {
 .float-btn:hover {
     background-color: #c7cfc9;
 }
-.chatbot {
+.chatbot-icon {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 50px;
-    height: 50px;
-    z-index: 1000;
-    display: none;
-}
-.chatbot-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
+    width: 60px;
     height: 50px;
     background-color: #0078d4;
     border-radius: 50%;
     color: white;
-    font-size: 24px;
+    font-size: 40px;
     text-align: center;
     line-height: 50px;
     cursor: pointer;
     z-index: 1000;
 }
+/*expanded window*/
 .chatbot {
     position: fixed;
     bottom: 80px;
     right: 20px;
     width: 300px;
-    max-height: 400px;
+    height: 250px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -185,6 +177,7 @@ iframe {
     flex: 1;
     padding: 10px;
     overflow-y: auto;
+    max-height: calc(100% - 90px);
 }
 .chatbot-input {
     padding: 10px;
@@ -200,4 +193,22 @@ iframe {
     background-color: #0078d4;
     color: white;
     border: none;
+    cursor: pointer;
+}
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 45px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+}
+.back-to-top:hover {
+    background-color: #0056b3;
 }

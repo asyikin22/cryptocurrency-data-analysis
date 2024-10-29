@@ -161,16 +161,18 @@
             - Tether (0.729), it has moderate correlation.</p>
         </div>
 
-        <div class="chatbot-btn" onclick="toggleChatbot()">💬</div>
+        <div class="chatbot-icon" onclick="toggleChatbot()">💬</div>
 
         <div id="chatbot" class="chatbot">
             <div class="chatbot-header">Chatbot</div>
-            <div class="chatbot-messages" id="chatbot-messages"></div>
+            <div class="chatbot-messages" id="chatbot_messages"></div>
             <div class="chatbot-input">
-                <input type="text" id="user-input" placeholder="Type a message...">
+                <input type="text" id="user_input" placeholder="Type a message...">
                 <button onclick="sendMessage()">Send</button>
             </div>
         </div>
+
+        <div class="back-to-top" onclick="scrollToTop()">⬆️</div>
 
         <footer style="font-size:15px; color: yellow; text-align: center">
             &copy; 2024 Asyikin 😊. All Rights Reserved.
@@ -178,7 +180,7 @@
     </div>
 </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </html>

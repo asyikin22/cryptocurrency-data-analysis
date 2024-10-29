@@ -8,10 +8,10 @@ from flask_socketio import SocketIO, emit
 load_dotenv()
 
 app = Flask(__name__)
-Socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="http://127.0.0.1:5000")
 
 #Azure bot details
-APP_ID = os.getenv("APP_ID")
+APP_ID = os.getenv("APP_ID") 
 APP_PASSWORD = os.getenv("APP_PASSWORD")
 DIRECT_LINE_SECRET = os.getenv("DIRECT_LINE_SECRET")
 DIRECT_LINE_URL = "https://directline.botframework.com/v3/directline/conversations"
@@ -24,7 +24,12 @@ def index():
 def start_chat():
     headers = {"Authorization": f"Bearer {DIRECT_LINE_SECRET}"}
     response = requests.post(DIRECT_LINE_URL, headers=headers)
-    return response.json()["chatId"]
+    
+    if response.status_code != 200:
+        print("Error starting chat:", response.json())
+        return None
+    
+    return response.json()["conversationId"]
 
 # sends chat to the bot using chat id
 def send_message_to_bot(chat_id, message):
@@ -34,17 +39,25 @@ def send_message_to_bot(chat_id, message):
     }
     data = {"type": "message", "from": {"id": "user"}, "text": message}
     response = requests.post(f"{DIRECT_LINE_URL}/{chat_id}/activities", headers=headers, json=data)
+    
+    if response.status_code != 200:
+        print("Error starting chat:", response.json())
+        return {"activities": []}
+    
     return response.json()
 
-@Socketio.on("send_message")
+@socketio.on("send_message")
 def handle_send_message(data):
     chat_id = start_chat()
     user_message = data["message"]
     bot_response = send_message_to_bot(chat_id, user_message)
     
-    #emit the bot response back to the client
-    emit("bot_response", bot_response)
+    #check if bot response contains 'activities' to prevent errors
+    if 'activities' in bot_response and bot_response["activities"]:
+        emit("bot_response", bot_response)
+    else:
+        emit("bot_response", {"activities": [{"text": "Bot did not respond."}]})
     
 if __name__ == '__main__':
-    Socketio.run(app, debug=True)
+    socketio.run(app, debug=True)
     

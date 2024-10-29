@@ -7,7 +7,7 @@ function toggleChatbot() {
 }
 
 function sendMessage() {
-    const userInput = document.getElementById("user-input"):
+    const userInput = document.getElementById("user_input");
     const message = userInput.value;
     if (message.trim() !== "") {
         displayMessage("You", message);
@@ -16,13 +16,19 @@ function sendMessage() {
     }
 }
 
+//listen for bot responses
 socket.on("bot_response", (data) => {
-    const botMessage = data.activities[0].text;
-    displayMessage("Bot". botMessage)
+    console.log("Received response from bot:", data)
+    if (data.activities && data.activities.length > 0) {
+        const botMessage = data.activities[0].text;
+        displayMessage("Bot", botMessage)
+    } else {
+        displayMessage("Bot", "Bot did not respond")
+    }
 });
 
 function displayMessage(sender, message) {
-    const messagesDiv = document.getElementById("chatbot-mesage");
+    const messagesDiv = document.getElementById("chatbot_messages");
     const messageDiv = document.createElement("div");
     messageDiv.textContent = `${sender}: ${message}`;
     messagesDiv.appendChild(messageDiv);
