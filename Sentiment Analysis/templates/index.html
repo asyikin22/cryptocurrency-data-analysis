@@ -161,14 +161,13 @@
             - Tether (0.729), it has moderate correlation.</p>
         </div>
 
-        <div class="chatbot-icon" onclick="toggleChatbot()">💬</div>
+        <div class="chatbot-icon" onclick="toggleChatbot()">❓</div>
 
         <div id="chatbot" class="chatbot">
-            <div class="chatbot-header">Chatbot</div>
             <div class="chatbot-messages" id="chatbot_messages"></div>
             <div class="chatbot-input">
-                <input type="text" id="user_input" placeholder="Type a message...">
-                <button onclick="sendMessage()">Send</button>
+                <input type="text" id="user_input" placeholder="Ask me anything..." onkeydown="handleEnter(event)">
+                <button onclick="sendMessage()">send</button>
             </div>
         </div>
 
@@ -180,7 +179,6 @@
     </div>
 </body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
     <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
 </html>

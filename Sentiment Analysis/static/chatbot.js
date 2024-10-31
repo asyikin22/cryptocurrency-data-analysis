@@ -1,36 +1,40 @@
-const socket = io.connect("http://localhost:5000");
-
 //function to toggle chatbot
 function toggleChatbot() {
     const chatbot = document.getElementById("chatbot");
     chatbot.style.display = chatbot.style.display === "none" ? "flex" : "none";
 }
 
-function sendMessage() {
-    const userInput = document.getElementById("user_input");
-    const message = userInput.value;
-    if (message.trim() !== "") {
-        displayMessage("You", message);
-        socket.emit("send_message", { message });
-        userInput.value = "";
+//function to handle 'enter'
+function handleEnter(event) {
+    if(event.key === "Enter") {
+        sendMessage();
     }
 }
 
-//listen for bot responses
-socket.on("bot_response", (data) => {
-    console.log("Received response from bot:", data)
-    if (data.activities && data.activities.length > 0) {
-        const botMessage = data.activities[0].text;
-        displayMessage("Bot", botMessage)
-    } else {
-        displayMessage("Bot", "Bot did not respond")
-    }
-});
+//function to handle sending a message
+function sendMessage() {
+    const userInput = document.getElementById("user_input").value;
+    if(userInput.trim() === "") return;
 
-function displayMessage(sender, message) {
-    const messagesDiv = document.getElementById("chatbot_messages");
-    const messageDiv = document.createElement("div");
-    messageDiv.textContent = `${sender}: ${message}`;
-    messagesDiv.appendChild(messageDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    //display user message in the chatbox
+    const chatBotMessages = document.getElementById("chatbot_messages");
+    chatBotMessages.innerHTML += `<div><strong>Term:</strong> ${userInput}</div>`;
+
+    //clear input field
+    document.getElementById("user_input").value = "";
+
+    //send message to the server 
+    fetch("/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: userInput })
+    })
+    .then(response => response.json())
+    .then(data => {
+        chatBotMessages.innerHTML += `&nbsp;<div><strong>Definition:</strong></br>${data.response}</div>&nbsp;`;
+        chatBotMessages.scrollTop = chatBotMessages.scrollHeight;
+    })
+    .catch(error => console.error("Error:", error))
 }
