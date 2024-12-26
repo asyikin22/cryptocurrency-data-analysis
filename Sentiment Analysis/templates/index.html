@@ -45,16 +45,6 @@
     <div class="content">
         <!-- <h1>Cryptocurrency Analysis: Insights from Reddit over 180 Days</h1> -->
 
-        <div class="chart-container" id="chart1" >
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h2 style="margin-right:0;"> Cryptocurrency Price Trend </h2>
-                <button class="float-btn" onclick="toggleFloat('chart1')" style="width:55px">Float</button>
-            </div>
-            <iframe src="{{ url_for('static', filename='HTML/crypto_price_trend.html') }}" style="height: 600px"></iframe>
-            <p style="text-align: center; font-size: 0.9rem;">
-                Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
-        </div>
-
         <div class="chart-container" id="chart2">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2 style="margin-right:0;"> Cryptocurrency Price Trend - Subplots </h2>
@@ -65,12 +55,20 @@
                 Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
         </div>
 
+        <div class="chart-container" id="chart1" >
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="margin-right:0;"> Cryptocurrency Price Trend </h2>
+                <button class="float-btn" onclick="toggleFloat('chart1')" style="width:55px">Float</button>
+            </div>
+            <iframe src="{{ url_for('static', filename='HTML/crypto_price_trend.html') }}" style="height: 420px"></iframe>
+        </div>
+
         <div class="chart-container" id="chart3">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h2 style="margin-right:0;"> General Sentiment Score </h2>
                 <button class="float-btn" onclick="toggleFloat('chart3')" style="width:55px">Float</button>
             </div>
-            <iframe src="{{ url_for('static', filename='HTML/sentiment_score_general.html') }}" style="height: 650px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/sentiment_score_general.html') }}" style="height: 420px"></iframe>
         </div>
 
         <div class="chart-container" id="chart4">
@@ -78,7 +76,7 @@
                 <h2 style="margin-right:0;"> Sentiment Score: Bitcoin, Ethereum, Tether, Binancecoin </h2>
                 <button class="float-btn" onclick="toggleFloat('chart4')" style="width:55px">Float</button>
             </div>
-            <iframe src="{{ url_for('static', filename='HTML/coin_sentiment_score.html') }}" style="height: 650px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/coin_sentiment_score.html') }}" style="height: 420px"></iframe>
         </div>  
 
         <div class="chart-container" id="chart5">
@@ -86,7 +84,7 @@
                 <h2 style="margin-right:0;"> Volatility Analysis </h2>
                 <button class="float-btn" onclick="toggleFloat('chart5')" style="width:55px">Float</button>
             </div>
-            <iframe src="{{ url_for('static', filename='HTML/volatility_analysis.html') }}" style="height: 940px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/volatility_analysis.html') }}" style="height: 420px"></iframe>
             <p><strong>Volatility Analysis:</strong></p>
             <p>- Tether is very stable with less volatility due to being pegged to the US dollar.<br>
             - On 9/6, when the price of other coins crashed, USDT price increased as traders might flock to stablecoins, which leads to an increase in demand for it.<br>
@@ -99,7 +97,7 @@
                 <h2 style="margin-right:0;">Daily Cumulative Returns</h2>
                 <button class="float-btn" onclick="toggleFloat('chart6')" style="width:55px">Float</button>
             </div>
-            <iframe src="{{ url_for('static', filename='HTML/daily_returns_analysis.html') }}" style="height: 600px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/daily_returns_analysis.html') }}" style="height: 420px"></iframe>
             <p><strong>Return Indicators:</strong><br>
             - 0%: no change in value<br>
             - 20%: investment has increased by 20%<br>
@@ -137,7 +135,7 @@
                 <h2 style="margin-right:0;">Correlation Matrix</h2>
                 <button class="float-btn" onclick="toggleFloat('chart7')" style="width:55px">Float</button>
             </div>
-            <iframe src="{{ url_for('static', filename='HTML/correlations_analysis.html') }}" style="height: 600px"></iframe>
+            <iframe src="{{ url_for('static', filename='HTML/correlations_analysis.html') }}" style="height: 420px"></iframe>
             <p><strong>Indicator:</strong><br>
             - High positive correlation: close to 1 = they move together<br>
             - Moderate correlation: 0.5 to 0.8<br>
@@ -161,13 +159,14 @@
             - Tether (0.729), it has moderate correlation.</p>
         </div>
 
-        <div class="chatbot-icon" onclick="toggleChatbot()">❓</div>
+        <div class="chatbot-icon" onclick="toggleChatbot()">📖</div>
 
         <div id="chatbot" class="chatbot">
             <div class="chatbot-messages" id="chatbot_messages"></div>
             <div class="chatbot-input">
-                <input type="text" id="user_input" placeholder="Ask me anything..." onkeydown="handleEnter(event)">
+                <input type="text" id="user_input" placeholder="Search a keyword..." onkeydown="handleEnter(event)">
                 <button onclick="sendMessage()">send</button>
+                <button onclick="resetChat()">clear</button>
             </div>
         </div>
 

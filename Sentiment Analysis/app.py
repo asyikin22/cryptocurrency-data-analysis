@@ -10,7 +10,7 @@ CORS(app)
 def get_keyword_def(user_message):
     keywords = keyword_definitions.keys()
     
-    closest_match = difflib.get_close_matches(user_message.lower(), keywords, n=1, cutoff=0.3)
+    closest_match = difflib.get_close_matches(user_message.lower(), keywords, n=1, cutoff=0.6)
     
     if closest_match:
         return keyword_definitions[closest_match[0]]

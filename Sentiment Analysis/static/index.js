@@ -100,3 +100,13 @@ document.getElementById('price-search-form').addEventListener('submit', function
         `;
     });
 });
+
+function resetChat() {
+    // Clear the chatbot messages
+    const chatbotMessages = document.getElementById("chatbot_messages");
+    chatbotMessages.innerHTML = "";
+
+    // Reset the input field
+    const userInput = document.getElementById("user_input");
+    userInput.value = "";
+}
