@@ -30,10 +30,10 @@ def chat():
     print(f"Bot response: {bot_response}")
     return jsonify({"response": bot_response})
 
-# Custom route to serve static HTML files
-@app.route('/static/HTML/<filename>')
-def custom_static(filename):
-    return app.send_static_file(f'HTML/{filename}')
+# # Custom route to serve static HTML files
+# @app.route('/static/HTML/<filename>')
+# def custom_static(filename):
+#     return app.send_static_file(f'HTML/{filename}')
 
 if __name__ == '__main__':
     app.run(debug=True)
