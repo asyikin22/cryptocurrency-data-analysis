@@ -50,7 +50,7 @@
                 <h2 style="margin-right:0;"> Cryptocurrency Price Trend - Subplots </h2>
                 <button class="float-btn" onclick="toggleFloat('chart2')" style="width:55px">Float</button>
             </div>
-            <iframe src="/static/HTML/crypto_price_trend_subplots.html" style="height: 820px"></iframe>
+            <iframe src="{{ url_for('custom_static', filename='crypto_price_trend_subplots.html') }}" style="height: 820px"></iframe>
             <p style="text-align: center; font-size: 0.9rem;">
                 Source: <a href="https://www.coingecko.com" target="_blank" style="color: #007bff; text-decoration: underline;">CoinGecko</a></p>
         </div>
@@ -60,7 +60,7 @@
                 <h2 style="margin-right:0;"> Cryptocurrency Price Trend </h2>
                 <button class="float-btn" onclick="toggleFloat('chart1')" style="width:55px">Float</button>
             </div>
-            <iframe src="static/HTML/crypto_price_trend.html" style="height: 420px"></iframe>
+            <iframe src="{{ url_for('custom_static', filename='crypto_price_trend.html') }}" style="height: 420px"></iframe>
         </div>
 
         <div class="chart-container" id="chart3">
@@ -68,7 +68,7 @@
                 <h2 style="margin-right:0;"> General Sentiment Score </h2>
                 <button class="float-btn" onclick="toggleFloat('chart3')" style="width:55px">Float</button>
             </div>
-            <iframe src="static/HTML/sentiment_score_general.html" style="height: 420px"></iframe>
+            <iframe src="{{ url_for('custom_static', filename='sentiment_score_general.html') }}" style="height: 420px"></iframe>
         </div>
 
         <div class="chart-container" id="chart4">
@@ -76,7 +76,7 @@
                 <h2 style="margin-right:0;"> Sentiment Score: Bitcoin, Ethereum, Tether, Binancecoin </h2>
                 <button class="float-btn" onclick="toggleFloat('chart4')" style="width:55px">Float</button>
             </div>
-            <iframe src="static/HTML/coin_sentiment_score.html" style="height: 420px"></iframe>
+            <iframe src="{{ url_for('custom_static', filename='coin_sentiment_score.html') }}" style="height: 420px"></iframe>
         </div>  
 
         <div class="chart-container" id="chart5">
@@ -84,7 +84,7 @@
                 <h2 style="margin-right:0;"> Volatility Analysis </h2>
                 <button class="float-btn" onclick="toggleFloat('chart5')" style="width:55px">Float</button>
             </div>
-            <iframe src="static/HTML/volatility_analysis.html" style="height: 420px"></iframe>
+            <iframe src="{{ url_for('custom_static', filename='volatility_analysis.html') }}" style="height: 420px"></iframe>
             <p><strong>Volatility Analysis:</strong></p>
             <p>- Tether is very stable with less volatility due to being pegged to the US dollar.<br>
             - On 9/6, when the price of other coins crashed, USDT price increased as traders might flock to stablecoins, which leads to an increase in demand for it.<br>
@@ -97,7 +97,7 @@
                 <h2 style="margin-right:0;">Daily Cumulative Returns</h2>
                 <button class="float-btn" onclick="toggleFloat('chart6')" style="width:55px">Float</button>
             </div>
-            <iframe src="static/HTML/daily_returns_analysis.html" style="height: 420px"></iframe>
+            <iframe src="{{ url_for('custom_static', filename='daily_returns_analysis.html') }}" style="height: 420px"></iframe>
             <p><strong>Return Indicators:</strong><br>
             - 0%: no change in value<br>
             - 20%: investment has increased by 20%<br>
@@ -135,7 +135,7 @@
                 <h2 style="margin-right:0;">Correlation Matrix</h2>
                 <button class="float-btn" onclick="toggleFloat('chart7')" style="width:55px">Float</button>
             </div>
-            <iframe src="static/HTML/correlations_analysis.html" style="height: 420px"></iframe>
+            <iframe src="{{ url_for('custom_static', filename='correlations_analysis.html') }}" style="height: 420px"></iframe>
             <p><strong>Indicator:</strong><br>
             - High positive correlation: close to 1 = they move together<br>
             - Moderate correlation: 0.5 to 0.8<br>
