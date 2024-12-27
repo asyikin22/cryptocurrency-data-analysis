@@ -85,8 +85,9 @@ document.getElementById('price-search-form').addEventListener('submit', function
     .then(data => {
         if (data.market_data && data.market_data.current_price) {
             const price = data.market_data.current_price.usd;
+            const formattedPrice = price.toFixed(2); // Limit to 2 decimal places
             document.getElementById('result').innerHTML =  `
-                <h3>$${price}</h3>
+                <h3>$${formattedPrice}</h3>
             `;
         } else {
             document.getElementById('result').innerHTML =  `
